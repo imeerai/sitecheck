@@ -1,0 +1,14 @@
+{
+  "name": "sitecheck",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Website benchmark, tech stack and server health checker",
+  "scripts": {
+    "start": "node backend/server.js",
+    "build": "cd frontend && npm install && npm run build",
+    "test": "node --test backend/test/*.test.js",
+    "dev:api": "ALLOW_PRIVATE=1 node backend/server.js",
+    "dev:web": "cd frontend && npm run dev"
+  },
+  "engines": { "node": ">=18" }
+}

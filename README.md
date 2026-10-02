@@ -1,8 +1,8 @@
 # SiteCheck
 
-SiteCheck kisi bhi public website ka quick technical audit karta hai. URL enter
-karke response time benchmark, server health, detected technology stack, aur
-basic page details dekhein.
+SiteCheck performs a quick technical audit of any public website. Enter a URL
+to view response-time benchmarks, server health, detected technologies, and
+basic page details.
 
 The project has a dependency-free Node.js backend and a React + Vite frontend.
 

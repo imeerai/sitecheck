@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">SiteCheck dashboard preview</title>
+  <desc id="desc">A preview of the SiteCheck website checker interface.</desc>
+  <rect width="1200" height="620" fill="#f7f7f5"/>
+  <rect x="120" y="80" width="960" height="460" rx="8" fill="#ffffff" stroke="#dededb"/>
+  <text x="180" y="170" font-family="Arial, sans-serif" font-size="42" font-weight="700" fill="#171717">SiteCheck</text>
+  <text x="180" y="210" font-family="Arial, sans-serif" font-size="20" fill="#6d6d68">Speed, tech stack and server health of any website.</text>
+  <rect x="180" y="270" width="700" height="58" fill="#ffffff" stroke="#c9c9c4"/>
+  <text x="205" y="307" font-family="Arial, sans-serif" font-size="18" fill="#9a9a94">example.com</text>
+  <rect x="900" y="270" width="120" height="58" fill="#171717"/>
+  <text x="930" y="307" font-family="Arial, sans-serif" font-size="18" fill="#ffffff">Check</text>
+  <rect x="180" y="390" width="260" height="72" fill="#f1f1ed"/>
+  <rect x="470" y="390" width="260" height="72" fill="#f1f1ed"/>
+  <rect x="760" y="390" width="260" height="72" fill="#f1f1ed"/>
+</svg>

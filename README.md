@@ -8,100 +8,76 @@ The project has a dependency-free Node.js backend and a React + Vite frontend.
 
 ## Features
 
-- URL response-time benchmark with multiple runs
-- HTTP status, headers, redirects, and page health checks
-- Technology detection from headers, cookies, and HTML
-- SSRF protection that blocks private and internal IP ranges
-- Per-IP rate limit of 15 analysis requests per minute
-- JSON API that can also be used without the frontend
+# SiteCheck
 
-## Requirements
+SiteCheck is a simple website health checker. Enter any public website URL to
+check its speed, server health, HTTP status, redirects, and detected tech
+stack.
 
-- Node.js 18 or newer
-- npm
+![SiteCheck preview](docs/sitecheck-preview.svg)
 
-## Quick start
+## Install
 
-Install the frontend dependencies and build the static assets:
+Requirements: Node.js 18 or newer and npm.
 
 ```bash
+npm install
 npm run build
 npm start
 ```
 
-Open <http://localhost:3000> in your browser.
+Open `http://localhost:3000` in your browser.
 
-Run the backend unit tests with:
+For frontend development, run the backend and frontend in separate terminals:
+
+```bash
+# Terminal 1
+npm run dev:api
+
+# Terminal 2
+npm run dev:web
+```
+
+Then open `http://localhost:5173`.
+
+## Deployment
+
+Deploy the project as one Node.js web service on Render, Railway, or a similar
+platform:
+
+```text
+Build command: npm run build
+Start command: npm start
+Node version: 18 or newer
+```
+
+No `.env` file is required. The platform provides `PORT` automatically. Do
+not set `ALLOW_PRIVATE=1` in production.
+
+## Backend
+
+The backend is a dependency-free Node.js server. It serves the built frontend
+and provides these API endpoints:
+
+```text
+GET /api/health
+GET /api/analyze?url=example.com
+```
+
+It fetches public websites, measures response time, checks server health, and
+detects technologies. Private network addresses are blocked for security.
+
+## Frontend
+
+The frontend is built with React and Vite. During development, Vite proxies
+`/api` requests to the backend on port 3000. In production, the backend serves
+the frontend from `frontend/dist`, so both parts use the same domain and no
+frontend API URL is needed.
+
+Run tests with:
 
 ```bash
 npm test
 ```
 
-## Development
-
-Use two terminals when working on the frontend. The Vite development server
-proxies `/api` requests to the backend on port 3000.
-
-Terminal 1:
-
-```bash
-npm run dev:api
-```
-
-Terminal 2:
-
-```bash
-npm run dev:web
-```
-
-Then open the Vite URL shown in the terminal, usually
-<http://localhost:5173>.
-
-## API
-
-Check whether the backend is running:
-
-```bash
-curl http://localhost:3000/api/health
-```
-
-Analyze a website:
-
-```bash
-curl 'http://localhost:3000/api/analyze?url=example.com'
-```
-
-The URL may omit `https://`; SiteCheck adds it automatically. Only HTTP and
-HTTPS URLs are accepted.
-
-## Project structure
-
-```text
-backend/
-  server.js              Node.js entry point
-  src/
-    app.js               HTTP router and API endpoints
-    config/              runtime settings
-    routes/              API route handlers
-    services/            fetcher, analyzer, and tech detection
-    middleware/          rate limiting
-    utils/               URL, HTTP, and network helpers
-  test/                  Node.js unit tests
-frontend/
-  src/
-    components/          dashboard UI components
-    lib/                 API and formatting helpers
-  dist/                  production frontend build
-```
-
-## Configuration
-
-The backend listens on port 3000 by default. Set `PORT` to use another port:
-
-```bash
-PORT=4000 node backend/server.js
-```
-
-`ALLOW_PRIVATE=1` is available for local testing only. Do not enable it when
-the server is exposed to untrusted users, because it allows requests to
-private network addresses.
+src/
